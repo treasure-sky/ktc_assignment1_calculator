@@ -1,0 +1,9 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="Lv2" type="Application" factoryName="Application">
+    <option name="MAIN_CLASS_NAME" value="dev.jino.calculator.Lv2.App" />
+    <module name="ktc_assignment1_calculator" />
+    <method v="2">
+      <option name="Make" enabled="true" />
+    </method>
+  </configuration>
+</component>
