@@ -2,6 +2,7 @@ package dev.jino.calculator.Lv2;
 
 import java.math.BigInteger;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class Calculator {
@@ -52,7 +53,7 @@ public class Calculator {
     }
 
     public static List<BigInteger> getResultList() {
-        return resultList;
+        return Collections.unmodifiableList(resultList);
     }
 
     public static void setResultByIdx(int idx, BigInteger num) {
