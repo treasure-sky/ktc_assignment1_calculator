@@ -1,0 +1,48 @@
+package dev.jino.calculator.Lv2;
+
+import java.math.BigInteger;
+import java.util.ArrayList;
+
+public class Calculator {
+
+    private static final ArrayList<BigInteger> resultList = new ArrayList<>();
+
+    /**
+     * 두 정수와 연산자를 받아 연산을 진행하는 메서드
+     *
+     * @param num1 피연산자1
+     * @param num2 피연산자2
+     * @param op   연산자
+     * @return num1 op num2 결과를 반환함
+     */
+    public static BigInteger calculate(BigInteger num1, BigInteger num2, char op) {
+        BigInteger result;
+        switch (op) {
+            case '+':
+                result = num1.add(num2);
+                break;
+
+            case '-':
+                result = num1.subtract(num2);
+                break;
+
+            case '*':
+                result = num1.multiply(num2);
+                break;
+
+            case '/':
+                if (num2.equals(BigInteger.ZERO)) {
+                    throw new ArithmeticException("나눗셈 연산에서 분모(두번째 정수)에 0이 입력될 수 없습니다.");
+                }
+                result = num1.divide(num2);
+                break;
+
+            default:
+                throw new IllegalArgumentException("지원하지 않는 연산자입니다: " + op);
+
+        }
+        resultList.add(result);
+        return result;
+
+    }
+}
