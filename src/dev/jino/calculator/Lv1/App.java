@@ -6,7 +6,7 @@ public class App {
 
     public static void main(String[] args) {
         Scanner sc;
-        int num1, num2;
+        long num1, num2;
         char op;
 
         while (true) {
@@ -62,6 +62,35 @@ public class App {
             break;
         }
 
+        long result = 0L;
+        boolean isPossible = true;
+        switch (op) {
+            case '+':
+                result = num1 + num2;
+                break;
+
+            case '-':
+                result = num1 - num2;
+                break;
+
+            case '*':
+                result = num1 * num2;
+                break;
+
+            case '/':
+                if (num2 == 0) {
+                    System.out.println("나눗셈 연산에서 분모(두번째 정수)에 0이 입력될 수 없습니다.");
+                    isPossible = false;
+                    break;
+                }
+                System.out.println("나눗셈의 경우 소수점이하는 버린 결과가 출력됩니다.");
+                result = num1 / num2;
+                break;
+        }
+
+        if (isPossible) {
+            System.out.printf("%d %c %d = %d\n", num1, op, num2, result);
+        }
 
     }
 }
