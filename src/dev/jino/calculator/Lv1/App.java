@@ -5,24 +5,46 @@ import java.util.Scanner;
 public class App {
 
     public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
+        Scanner sc;
+        int num1, num2;
 
-        long num1, num2;
-        do {
-            System.out.print("첫 번째 숫자를 입력하세요(0 - 2147483647): ");
-            num1 = sc.nextLong();
-            if (num1 < 0 || num1 > 2147483647) {
-                System.out.printf("%d는 음수 입니다.\n", num1);
-            }
-        } while (num1 < 0);
+        while (true) {
+            sc = new Scanner(System.in);
+            System.out.print("첫 번째 정수를 입력하세요(0 - 2147483647): ");
 
-        do {
-            System.out.print("두 번째 숫자를 입력하세요(0 - 2147483647): ");
-            num2 = sc.nextLong();
-            if (num2 < 0 || num1 > 2147483647) {
-                System.out.printf("%d는 음수 입니다.\n", num1);
+            String input1 = sc.nextLine().trim();
+            if (!input1.matches("\\d+")) {
+                System.out.println("문자/음수/소수/2개 이상의 숫자는 입력할 수 없습니다.");
+                continue;
             }
-        } while (num2 < 0);
+
+            try {
+                num1 = Integer.parseInt(input1);
+                System.out.printf("첫 번째 입력 숫자: %d\n", num1);
+                break;
+            } catch (NumberFormatException e) {
+                System.out.println("범위를 벗어나는 숫자는 입력할 수 없습니다.");
+            }
+        }
+
+        while (true) {
+            sc = new Scanner(System.in); // 버퍼 초기화
+            System.out.print("두 번째 정수를 입력하세요(0 - 2147483647): ");
+
+            String input2 = sc.nextLine().trim();
+            if (!input2.matches("\\d+")) {
+                System.out.println("문자/음수/소수/2개 이상의 숫자는 입력할 수 없습니다.");
+                continue;
+            }
+
+            try {
+                num2 = Integer.parseInt(input2);
+                System.out.printf("첫 번째 입력 숫자: %d\n", num2);
+                break;
+            } catch (NumberFormatException e) {
+                System.out.println("범위를 벗어나는 숫자는 입력할 수 없습니다.");
+            }
+        }
 
     }
 }
