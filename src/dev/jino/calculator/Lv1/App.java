@@ -40,7 +40,7 @@ public class App {
 
             try {
                 num2 = Integer.parseInt(input2);
-                System.out.printf("첫 번째 입력 숫자: %d\n", num2);
+                System.out.printf("두 번째 입력 숫자: %d\n", num2);
                 break;
             } catch (NumberFormatException e) {
                 System.out.println("범위를 벗어나는 숫자는 입력할 수 없습니다.");
