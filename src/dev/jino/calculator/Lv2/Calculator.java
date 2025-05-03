@@ -2,10 +2,11 @@ package dev.jino.calculator.Lv2;
 
 import java.math.BigInteger;
 import java.util.ArrayList;
+import java.util.List;
 
 public class Calculator {
 
-    private static final ArrayList<BigInteger> resultList = new ArrayList<>();
+    private static final List<BigInteger> resultList = new ArrayList<>();
 
     /**
      * 두 정수와 연산자를 받아 연산을 진행하는 메서드
@@ -44,5 +45,21 @@ public class Calculator {
         resultList.add(result);
         return result;
 
+    }
+
+    public static BigInteger getResultByIdx(int idx) {
+        return resultList.get(idx);
+    }
+
+    public static List<BigInteger> getResultList() {
+        return resultList;
+    }
+
+    public static void setResultByIdx(int idx, BigInteger num) {
+        try {
+            resultList.set(idx, num);
+        } catch (IndexOutOfBoundsException e) {
+            throw new IndexOutOfBoundsException("존재하지 않는 결과 번호 입니다.");
+        }
     }
 }
