@@ -7,6 +7,7 @@ public class App {
     public static void main(String[] args) {
         Scanner sc;
         int num1, num2;
+        char op;
 
         while (true) {
             sc = new Scanner(System.in);
@@ -45,6 +46,22 @@ public class App {
                 System.out.println("범위를 벗어나는 숫자는 입력할 수 없습니다.");
             }
         }
+
+        while (true) {
+            sc = new Scanner(System.in); // 버퍼 초기화
+            System.out.print("사칙연산 기호를 입력해주세요.(+, -, *, /): ");
+
+            String input3 = sc.nextLine().trim();
+            if (input3.length() != 1 || !"+-*/".contains(input3)) {
+                System.out.println("잘못된 사칙연산 기호입니다.");
+                continue;
+            }
+
+            op = input3.charAt(0);
+            System.out.printf("입력한 연산자: %c\n", op);
+            break;
+        }
+
 
     }
 }
