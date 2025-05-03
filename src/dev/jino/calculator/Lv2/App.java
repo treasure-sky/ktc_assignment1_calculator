@@ -1,9 +1,13 @@
 package dev.jino.calculator.Lv2;
 
 import static dev.jino.calculator.Lv2.Calculator.calculate;
+import static dev.jino.calculator.Lv2.Calculator.getResultByIdx;
+import static dev.jino.calculator.Lv2.Calculator.getResultList;
+import static dev.jino.calculator.Lv2.Calculator.setResultByIdx;
 
 import java.math.BigInteger;
 import java.util.InputMismatchException;
+import java.util.List;
 import java.util.Scanner;
 
 public class App {
@@ -14,6 +18,44 @@ public class App {
         char op;
 
         while (true) {
+            while (true) {
+                sc = new Scanner(System.in);
+
+                List<BigInteger> resultList = getResultList();
+                if (resultList.isEmpty()) {
+                    break;
+                }
+
+                System.out.println("<현재까지의 계산 결과 목록>");
+                for (int i = 0; i < resultList.size(); i++) {
+                    System.out.printf("%d. %d\n", (i + 1), resultList.get(i));
+                }
+                System.out.print(
+                    "위 결과를 수정하시려면 modify 와 결과 번호, 수정값을 입력해주세요. (e.g. modify 1 100)\n계산을 원하시는 경우 아무 문자나 입력해주세요.: ");
+                if (sc.next().equals("modify")) {
+                    int idx = -1;
+                    BigInteger num = BigInteger.ZERO;
+                    try {
+                        idx = sc.nextInt();
+                        num = sc.nextBigInteger();
+                    } catch (InputMismatchException e) {
+                        System.out.println("modify 형식이 맞지 않습니다. 처음단계로 이동합니다.");
+                        continue;
+                    }
+
+                    try {
+                        setResultByIdx(idx - 1, num); // idx는 0부터 시작하므로 -1
+                        System.out.printf("%d번째 결과가 %d로 수정완료 되었습니다.\n", idx,
+                            getResultByIdx(idx - 1));
+                        continue;
+                    } catch (IndexOutOfBoundsException e) {
+                        System.out.println(e.getMessage());
+                    }
+                }
+                break;
+
+
+            }
 
             while (true) {
                 sc = new Scanner(System.in);
@@ -78,7 +120,7 @@ public class App {
             }
 
             sc = new Scanner(System.in);
-            System.out.print("종료하시려면 exit 를 입력해주세요. (계속 진행을 원하는 경우 아무 입력을 해주세요): ");
+            System.out.print("종료하시려면 exit 를 입력해주세요. 계속 진행을 원하는 경우 아무 입력을 해주세요: ");
             if (sc.next().equals("exit")) {
                 break;
             }
