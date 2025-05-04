@@ -48,6 +48,7 @@ public class Calculator {
 
     }
 
+
     public static BigInteger getResultByIdx(int idx) {
         return resultList.get(idx);
     }
@@ -56,6 +57,12 @@ public class Calculator {
         return Collections.unmodifiableList(resultList);
     }
 
+    /**
+     * 결과 수정 메서드
+     *
+     * @param idx 수정하려는 결과 인덱스
+     * @param num 수정된 결과
+     */
     public static void setResultByIdx(int idx, BigInteger num) {
         try {
             resultList.set(idx, num);
@@ -64,6 +71,11 @@ public class Calculator {
         }
     }
 
+    /**
+     * 가장 처음 입력된 결과 삭제 메서드
+     *
+     * @return 삭제된 결과값
+     */
     public static BigInteger removeResult() {
         return resultList.remove(0);
     }

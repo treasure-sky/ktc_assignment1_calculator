@@ -19,6 +19,8 @@ public class App {
         char op;
 
         while (true) {
+
+            // 결과 목록 출력 및 결과 수정 / 제거 기능
             while (true) {
                 sc = new Scanner(System.in);
 
@@ -66,6 +68,7 @@ public class App {
 
             }
 
+            // 계산할 첫 번째 숫자 입력
             while (true) {
                 sc = new Scanner(System.in);
                 System.out.print("첫 번째 숫자를 입력하세요.(0을 포함한 양의 정수 이어야 합니다.): ");
@@ -86,6 +89,7 @@ public class App {
                 break;
             }
 
+            // 계산할 두 번째 숫자 입력
             while (true) {
                 sc = new Scanner(System.in);
                 System.out.print("두 번째 숫자를 입력하세요.(0을 포함한 양의 정수 이어야 합니다.): ");
@@ -106,6 +110,7 @@ public class App {
                 break;
             }
 
+            // 사칙연산 기호 입력
             while (true) {
                 sc = new Scanner(System.in); // 버퍼 초기화
                 System.out.print("사칙연산 기호를 입력해주세요.(+, -, *, /): ");
@@ -121,6 +126,7 @@ public class App {
                 break;
             }
 
+            // 사칙연산 메서드 호출
             try {
                 BigInteger result = calculate(num1, num2, op);
                 System.out.printf("%d %c %d = %d\n", num1, op, num2, result);
