@@ -1,17 +1,17 @@
-package dev.jino.calculator.Lv2;
+package dev.jino.calculator.Lv3;
 
-import static dev.jino.calculator.Lv2.Calculator.calculate;
-import static dev.jino.calculator.Lv2.Calculator.getResultByIdx;
-import static dev.jino.calculator.Lv2.Calculator.getResultList;
-import static dev.jino.calculator.Lv2.Calculator.removeResult;
-import static dev.jino.calculator.Lv2.Calculator.setResultByIdx;
+import static dev.jino.calculator.Lv3.ArithmeticCalculator.calculate;
+import static dev.jino.calculator.Lv3.ArithmeticCalculator.getResultByIdx;
+import static dev.jino.calculator.Lv3.ArithmeticCalculator.getResultList;
+import static dev.jino.calculator.Lv3.ArithmeticCalculator.removeResult;
+import static dev.jino.calculator.Lv3.ArithmeticCalculator.setResultByIdx;
 
 import java.math.BigInteger;
 import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
 
-public class App {
+public class AppLv3 {
 
     public static void main(String[] args) {
         Scanner sc;
