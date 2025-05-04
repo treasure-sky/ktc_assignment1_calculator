@@ -6,7 +6,7 @@ import static dev.jino.calculator.Lv3.ArithmeticCalculator.getResultList;
 import static dev.jino.calculator.Lv3.ArithmeticCalculator.removeResult;
 import static dev.jino.calculator.Lv3.ArithmeticCalculator.setResultByIdx;
 
-import java.math.BigInteger;
+import java.math.BigDecimal;
 import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
@@ -15,7 +15,7 @@ public class AppLv3 {
 
     public static void main(String[] args) {
         Scanner sc;
-        BigInteger num1, num2; // 모든 범위의 양의 정수를 입력 가능하도록 하기 위해 Lv2 부터 BigInteger를 사용하였음.
+        BigDecimal num1, num2;
         char op;
 
         while (true) {
@@ -24,14 +24,14 @@ public class AppLv3 {
             while (true) {
                 sc = new Scanner(System.in);
 
-                List<BigInteger> resultList = getResultList();
+                List<BigDecimal> resultList = getResultList();
                 if (resultList.isEmpty()) {
                     break;
                 }
 
                 System.out.println("<현재까지의 계산 결과 목록>");
                 for (int i = 0; i < resultList.size(); i++) {
-                    System.out.printf("%d. %d\n", (i + 1), resultList.get(i));
+                    System.out.printf("%d. %f\n", (i + 1), resultList.get(i));
                 }
                 System.out.print(
                     """
@@ -41,10 +41,10 @@ public class AppLv3 {
                 String input = sc.next();
                 if (input.equals("modify")) {
                     int idx = -1;
-                    BigInteger num = BigInteger.ZERO;
+                    BigDecimal num;
                     try {
                         idx = sc.nextInt();
-                        num = sc.nextBigInteger();
+                        num = sc.nextBigDecimal();
                     } catch (InputMismatchException e) {
                         System.out.println("modify 형식이 맞지 않습니다. 처음단계로 이동합니다.");
                         continue;
@@ -52,15 +52,15 @@ public class AppLv3 {
 
                     try {
                         setResultByIdx(idx - 1, num); // idx는 0부터 시작하므로 -1
-                        System.out.printf("%d번째 결과가 %d로 수정완료 되었습니다.\n", idx,
+                        System.out.printf("%d번째 결과가 %f로 수정완료 되었습니다.\n", idx,
                             getResultByIdx(idx - 1));
                         continue;
                     } catch (IndexOutOfBoundsException e) {
                         System.out.println(e.getMessage());
                     }
                 } else if (input.equals("remove")) {
-                    BigInteger removedNum = removeResult();
-                    System.out.printf("1번째 결과 %d가 삭제되었습니다.\n", removedNum);
+                    BigDecimal removedNum = removeResult();
+                    System.out.printf("1번째 결과 %f가 삭제되었습니다.\n", removedNum);
                     continue;
                 }
                 break;
@@ -71,42 +71,42 @@ public class AppLv3 {
             // 계산할 첫 번째 숫자 입력
             while (true) {
                 sc = new Scanner(System.in);
-                System.out.print("첫 번째 숫자를 입력하세요.(0을 포함한 양의 정수 이어야 합니다.): ");
+                System.out.print("첫 번째 숫자를 입력하세요 : ");
 
                 try {
-                    num1 = sc.nextBigInteger();
+                    num1 = sc.nextBigDecimal();
                 } catch (InputMismatchException e) {
-                    System.out.println("정수의 형태로 입력해주세요.");
+                    System.out.println("수의 형태로 입력해주세요.");
                     continue;
                 }
 
-                if (num1.compareTo(BigInteger.ZERO) < 0) {
+                if (num1.compareTo(BigDecimal.ZERO) < 0) {
                     System.out.println("음수는 입력할 수 없습니다.");
                     continue;
                 }
 
-                System.out.printf("첫 번째 입력 숫자: %d\n", num1);
+                System.out.printf("첫 번째 입력 숫자: %f\n", num1);
                 break;
             }
 
             // 계산할 두 번째 숫자 입력
             while (true) {
                 sc = new Scanner(System.in);
-                System.out.print("두 번째 숫자를 입력하세요.(0을 포함한 양의 정수 이어야 합니다.): ");
+                System.out.print("두 번째 숫자를 입력하세요 : ");
 
                 try {
-                    num2 = sc.nextBigInteger();
+                    num2 = sc.nextBigDecimal();
                 } catch (InputMismatchException e) {
-                    System.out.println("정수의 형태로 입력해주세요.");
+                    System.out.println("수의 형태로 입력해주세요.");
                     continue;
                 }
 
-                if (num2.compareTo(BigInteger.ZERO) < 0) {
+                if (num2.compareTo(BigDecimal.ZERO) < 0) {
                     System.out.println("음수는 입력할 수 없습니다.");
                     continue;
                 }
 
-                System.out.printf("두 번째 입력 숫자: %d\n", num2);
+                System.out.printf("두 번째 입력 숫자: %f\n", num2);
                 break;
             }
 
@@ -128,8 +128,8 @@ public class AppLv3 {
 
             // 사칙연산 메서드 호출
             try {
-                BigInteger result = calculate(num1, num2, op);
-                System.out.printf("%d %c %d = %d\n", num1, op, num2, result);
+                BigDecimal result = calculate(num1, num2, op);
+                System.out.printf("%f %c %f = %f\n", num1, op, num2, result);
             } catch (ArithmeticException | IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }

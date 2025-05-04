@@ -1,24 +1,25 @@
 package dev.jino.calculator.Lv3;
 
-import java.math.BigInteger;
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
 public class ArithmeticCalculator {
 
-    private static final List<BigInteger> resultList = new ArrayList<>();
+    private static final List<BigDecimal> resultList = new ArrayList<>();
 
     /**
-     * 두 정수와 연산자를 받아 연산을 진행하는 메서드
+     * 두 수와 연산자를 받아 연산을 진행하는 메서드
      *
      * @param num1     피연산자1
      * @param num2     피연산자2
      * @param opSymbol 연산자
      * @return num1 opSymbol num2 결과를 반환함
      */
-    public static BigInteger calculate(BigInteger num1, BigInteger num2, char opSymbol) {
-        BigInteger result = BigInteger.ZERO;
+    public static BigDecimal calculate(BigDecimal num1, BigDecimal num2, char opSymbol) {
+        BigDecimal result = BigDecimal.ZERO;
         OperatorType op = OperatorType.find(opSymbol);
         switch (op) {
             case PLUS:
@@ -34,10 +35,10 @@ public class ArithmeticCalculator {
                 break;
 
             case DIVIDE:
-                if (num2.equals(BigInteger.ZERO)) {
-                    throw new ArithmeticException("나눗셈 연산에서 분모(두번째 정수)에 0이 입력될 수 없습니다.");
+                if (num2.equals(BigDecimal.ZERO)) {
+                    throw new ArithmeticException("나눗셈 연산에서 분모에 0이 입력될 수 없습니다.");
                 }
-                result = num1.divide(num2);
+                result = num1.divide(num2, 6, RoundingMode.HALF_UP);
                 break;
         }
         resultList.add(result);
@@ -46,11 +47,11 @@ public class ArithmeticCalculator {
     }
 
 
-    public static BigInteger getResultByIdx(int idx) {
+    public static BigDecimal getResultByIdx(int idx) {
         return resultList.get(idx);
     }
 
-    public static List<BigInteger> getResultList() {
+    public static List<BigDecimal> getResultList() {
         return Collections.unmodifiableList(resultList);
     }
 
@@ -60,7 +61,7 @@ public class ArithmeticCalculator {
      * @param idx 수정하려는 결과 인덱스
      * @param num 수정된 결과
      */
-    public static void setResultByIdx(int idx, BigInteger num) {
+    public static void setResultByIdx(int idx, BigDecimal num) {
         try {
             resultList.set(idx, num);
         } catch (IndexOutOfBoundsException e) {
@@ -73,7 +74,7 @@ public class ArithmeticCalculator {
      *
      * @return 삭제된 결과값
      */
-    public static BigInteger removeResult() {
+    public static BigDecimal removeResult() {
         return resultList.remove(0);
     }
 }
