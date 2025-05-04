@@ -63,4 +63,8 @@ public class Calculator {
             throw new IndexOutOfBoundsException("존재하지 않는 결과 번호 입니다.");
         }
     }
+
+    public static BigInteger removeResult() {
+        return resultList.remove(0);
+    }
 }

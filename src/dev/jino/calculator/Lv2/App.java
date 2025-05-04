@@ -3,6 +3,7 @@ package dev.jino.calculator.Lv2;
 import static dev.jino.calculator.Lv2.Calculator.calculate;
 import static dev.jino.calculator.Lv2.Calculator.getResultByIdx;
 import static dev.jino.calculator.Lv2.Calculator.getResultList;
+import static dev.jino.calculator.Lv2.Calculator.removeResult;
 import static dev.jino.calculator.Lv2.Calculator.setResultByIdx;
 
 import java.math.BigInteger;
@@ -31,8 +32,12 @@ public class App {
                     System.out.printf("%d. %d\n", (i + 1), resultList.get(i));
                 }
                 System.out.print(
-                    "위 결과를 수정하시려면 modify 와 결과 번호, 수정값을 입력해주세요. (e.g. modify 1 100)\n계산을 원하시는 경우 아무 문자나 입력해주세요.: ");
-                if (sc.next().equals("modify")) {
+                    """
+                        위 결과를 수정하시려면 modify 와 결과 번호, 수정값을 입력해주세요. (e.g. modify 1 100)
+                        가장 먼저 저장된 결과를 삭제하기를 원하신다면 remove 를 입력해주세요.
+                        계산을 원하시는 경우 아무 문자나 입력해주세요.:\s""");
+                String input = sc.next();
+                if (input.equals("modify")) {
                     int idx = -1;
                     BigInteger num = BigInteger.ZERO;
                     try {
@@ -51,6 +56,10 @@ public class App {
                     } catch (IndexOutOfBoundsException e) {
                         System.out.println(e.getMessage());
                     }
+                } else if (input.equals("remove")) {
+                    BigInteger removedNum = removeResult();
+                    System.out.printf("1번째 결과 %d가 삭제되었습니다.\n", removedNum);
+                    continue;
                 }
                 break;
 
